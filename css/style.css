@@ -1,0 +1,112 @@
+/* style.css */
+/* General page styling */
+body {
+    background: url('../images/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #333;
+}
+
+/* Container */
+.container, .form-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    margin: 80px auto;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0, 128, 0, 0.3);
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #2d572c;
+}
+
+/* Buttons */
+.button, input[type="submit"] {
+    background-color: #4CAF50;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.button:hover, input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+textarea {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Textarea */
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+.result {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;  /* changed from left */
+    margin-top: 30px;
+    display: none;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.result img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+    margin: 25px auto 0;
+    display: block;
+}
+
+
+/* Image for crop prediction */
+img {
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 128, 0, 0.2);
+}
+
+/* Updated recommendation image style */
+.recommendation img {
+    width: 100%;
+    height: 50px;
+    object-fit: contain;
+    margin: 15px 0;
+    display: block;
+    border-radius: 5px;
+}
+
+/* Links */
+a {
+    color: #2d572c;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
