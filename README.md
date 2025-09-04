@@ -1,1 +1,1 @@
-# Crop-Recommendation
+A system that leverages ML algorithms to provide precise crop and fertilizer recommendations based on soil and weather data.The model focuses on predicting the crop yield in advance by analyzing factors like  weather and soil parameters, state, season, crop type using various supervised machine learning techniques. This helps the farmers to know the crop yield in advance to plan and choose a crop that would give a better yield and recommend a natural fertilizers.
