@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us - AgriCrop Advisor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+            font-family: 'Ubuntu', sans-serif;
+            background: url("{{ url_for('static', filename='images/crop1.png') }}") no-repeat center center fixed;
+            background-size: cover;
+            color: #2d572c;
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+            z-index: -1;
+        }
+
+
+
+    .navbar {
+      width: 100%;
+      padding: 15px 50px 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: linear-gradient(to right, #4caf50, #81c784);
+      color: white;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .logo {
+      font-weight: 600;
+      font-size: 40px;
+    }
+
+    .navbar .nav-links {
+      margin-right: 60px;
+    }
+
+    .navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .navbar .nav-links a:hover {
+      color: #f0f0f0;
+    }
+
+    .spacer {
+      height: 90px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #fffef5;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      margin-top: 30px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2d572c;
+      margin-bottom: 30px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      background-color: #f8fff3;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 120px;
+    }
+
+    input[type="submit"] {
+      background-color: #3c763d;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2e5e2d;
+    }
+
+    .success-message {
+      background-color: #e1f7d5;
+      color: #2f6627;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #a0d468;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    footer {
+      margin: 40px 0 20px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="logo">🌿 AgriCrop Advisor</div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/learn">Learn</a>
+    
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="container">
+  <h2>🌾 Contact Us</h2>
+  {% if success %}
+  <div class="success-message">
+    ✅ Thank you for your message! We'll get back to you soon.
+  </div>
+  {% endif %}
+  <form method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="tel" name="contact" placeholder="Contact Number" required pattern="[0-9]{10}" title="Enter a 10-digit phone number">
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <input type="submit" value="Send">
+  </form>
+</div>
+
+<footer>
+  &copy; 2025 AgriCrop Advisor. All rights reserved.
+</footer>
+
+</body>
+</html>

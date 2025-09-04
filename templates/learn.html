@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Learn - AgriCrop Advisor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f4fff0;
+      color: #2d572c;
+    }
+
+    .navbar {
+      width: 100%;
+      padding: 15px 50px 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: linear-gradient(to right, #4caf50, #81c784);
+      color: white;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .logo {
+      font-weight: 600;
+      font-size: 40px;
+    }
+
+    .navbar .nav-links {
+      margin-right: 60px;
+    }
+
+    .navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .navbar .nav-links a:hover {
+      color: #f0f0f0;
+    }
+
+    .spacer {
+      height: 90px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #3b7a57;
+      margin: 40px 0 30px;
+      font-size: 36px;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0 30px 40px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card h2 {
+      color: #3b7a57;
+      font-size: 1.4em;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 1em;
+      line-height: 1.6;
+      color: #3a3a3a;
+    }
+
+    .card-content a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #2d572c;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .card-content a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin: 40px 0 20px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="logo">🌿 AgriCrop Advisor</div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/contact">Contact</a>
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<h1>Learn About Agriculture</h1>
+
+<div class="card-container">
+
+  <div class="card">
+    <img src="/static/images/crop5.png">
+    <div class="card-content">
+      <h2>About Agriculture</h2>
+      <p>Agriculture is the practice of cultivating plants and livestock. It is the backbone of food supply and plays a major role in economic development and sustainability.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="/static/images/india crop.png" alt="Indian agriculture">
+    <div class="card-content">
+      <h2>Agriculture in India</h2>
+      <p>India is one of the world's largest producers of rice, wheat, cotton, and pulses. Agriculture employs over 50% of India's population and contributes significantly to its GDP.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="/static/images/soil crop.png" alt="Soil health">
+    <div class="card-content">
+      <h2>Soil Health</h2>
+      <p>Soil health is essential for crop yield. Key indicators include pH, organic matter, moisture, and NPK levels. Good soil management ensures long-term productivity.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="/static/images/sus crop.png" alt="Sustainable farming">
+    <div class="card-content">
+      <h2>Sustainable Farming</h2>
+      <p>Sustainable agriculture includes crop rotation, minimal pesticide use, water conservation, and organic practices to preserve biodiversity and reduce carbon impact.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="/static/images/law crop.png" alt="Policy">
+    <div class="card-content">
+      <h2>Agri Policies & Constitution</h2>
+      <p>Article 48 of the Indian Constitution promotes modern agricultural practices. Policies like PM-Kisan, eNAM, and the Soil Health Card Scheme support farmers across the country.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="/static/images/tech crop.png" alt="Technology in agriculture">
+    <div class="card-content">
+      <h2>Technology in Agriculture</h2>
+      <p>Technologies such as AI, sensors, drones, and precision farming are transforming agriculture by improving efficiency, reducing waste, and increasing crop quality.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="/static/images/crops_detail.png" alt="Crop Information">
+    <div class="card-content">
+      <h2>Major Crops & Their Requirements</h2>
+      <p>Wheat grows best in cool, dry climates and loamy soil. Rice needs plenty of water and clayey soil. Sugarcane thrives in tropical regions with rich alluvial soil and requires high water input.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="/static/images/fertilizers.png" alt="Fertilizers">
+    <div class="card-content">
+      <h2>Fertilizer Types & Usage</h2>
+      <p>Fertilizers supply essential nutrients like nitrogen (urea), phosphorus (DAP), and potassium (MOP). Organic options like compost and green manure improve soil structure and biodiversity.</p>
+    </div>
+  </div>
+
+</div>
+
+<h1 style="margin-top: 50px;">Download Resources</h1>
+<div class="card-container">
+
+  <div class="card">
+    <img src="/static/images/documents.png" alt="PDF Document">
+    <div class="card-content">
+      <h2>Fertilizers and Their Efficient Use</h2>
+      <p>A guide on best practices for fertilizer application.</p>
+      <a href="https://www.fertilizer.org/wp-content/uploads/2023/01/2016_ifa_reetz.pdf" target="_blank">📥 Download PDF</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="/static/images/documents.png" alt="PDF Document">
+    <div class="card-content">
+      <h2>Essential Nutrients for Plant Growth</h2>
+      <p>Details the 16 essential elements required for plant development.</p>
+      <a href="https://www.ctahr.hawaii.edu/oc/freepubs/pdf/pnm3.pdf" target="_blank">📥 Download PDF</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="/static/images/documents.png" alt="PDF Document">
+    <div class="card-content">
+      <h2>Training Manual for Organic Agriculture</h2>
+      <p>A comprehensive manual on organic farming techniques.</p>
+      <a href="https://www.fao.org/fileadmin/templates/nr/sustainability_pathways/docs/Compilation_techniques_organic_agriculture_rev.pdf" target="_blank">📥 Download PDF</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="/static/images/documents.png" alt="PDF Document">
+    <div class="card-content">
+      <h2>Fertilizers and Their Use</h2>
+      <p>An in-depth look at different fertilizers and their applications.</p>
+      <a href="https://utbeef.tennessee.edu/wp-content/uploads/sites/127/2020/11/PB1637.pdf" target="_blank">📥 Download PDF</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2025 AgriCrop Advisor. All rights reserved.
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AgriCrop Advisor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Ubuntu', sans-serif;
+      background: linear-gradient(to right, #e4f9d5, #a8e063);
+      color: #2d572c;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 30px 50px;
+      background-color: #ffffffcc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header .logo {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #2f5f2f;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #2d572c;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: url('https://img.freepik.com/free-vector/organic-flat-agriculture-landing-page_23-2148890170.jpg') no-repeat center center/cover;
+      color: white;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .hero-content {
+      z-index: 2;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+    }
+
+    .cta-buttons a {
+      text-decoration: none;
+      padding: 12px 25px;
+      margin: 0 10px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 8px;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-buttons a:hover {
+      background-color: #367c39;
+    }
+
+    .slider {
+      max-width: 900px;
+      margin: 60px auto;
+      position: relative;
+      background: #ffffffcc;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .slide h2 {
+      margin-bottom: 15px;
+      font-size: 1.6em;
+      color: #2c5f2d;
+    }
+
+    .slide p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #3a3a3a;
+    }
+
+    .nav-btns {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .nav-btns button {
+      background: #4CAF50;
+      border: none;
+      padding: 10px 15px;
+      margin: 0 5px;
+      color: white;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .nav-btns button:hover {
+      background-color: #367c39;
+    }
+
+    .dots {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background-color: #bbb;
+      border-radius: 50%;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: #4CAF50;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #ffffffaa;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2em; }
+      .cta-buttons a { display: block; margin: 10px auto; }
+      .slide p { font-size: 1em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🌿 AgriCrop Advisor</div>
+    <nav>
+      <a href="/register">Register</a>
+      <a href="/login">Login</a>
+      <a href="/contact">Contact</a>
+      <a href="/learn">Learn</a>
+                  
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to AgriCrop Advisor</h1>
+      <p>Get expert crop recommendations based on your soil, climate, and region.</p><br><br>
+      <div class="cta-buttons">
+        <a href="/login">Get Started</a>
+        <a href="/contact">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="slider">
+    <div class="slides" id="slides">
+      <div class="slide">
+        <h2>About Agriculture</h2>
+        <p>Agriculture feeds the world. It involves the cultivation of soil, growing crops, and raising livestock. Modern practices now use data and AI to improve yields and conserve resources.</p>
+      </div>
+      <div class="slide">
+        <h2>Agriculture in India</h2>
+        <p>India is among the largest producers of rice, wheat, and spices. Agriculture is a livelihood for over half the population. Improving technology and training can uplift rural communities.</p>
+      </div>
+      <div class="slide">
+        <h2>Sustainable Farming</h2>
+        <p>Sustainable agriculture focuses on long-term productivity without harming the environment. Practices include crop rotation, composting, and reduced chemical use.</p>
+      </div>
+      <div class="slide">
+        <h2>Soil Health Matters</h2>
+        <p>Understanding soil nutrients (NPK), pH, and moisture is key to crop success. Our tool helps analyze these factors to recommend the best crops for your land.</p>
+      </div>
+    </div>
+    <div class="nav-btns">
+      <button onclick="prevSlide()">←</button>
+      <button onclick="nextSlide()">→</button>
+    </div>
+    <div class="dots">
+      <span class="dot" onclick="setSlide(0)"></span>
+      <span class="dot" onclick="setSlide(1)"></span>
+      <span class="dot" onclick="setSlide(2)"></span>
+      <span class="dot" onclick="setSlide(3)"></span>
+    </div>
+  </section>
+
+  <section class="info-section fade-in" style="background-color: #e7f9e9;">
+        <h2>Gallery: Scenes from the Field</h2>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding-top: 20px;">
+            <img src="\static\images\Crop.png" alt="Field 1" width="250" style="border-radius: 10px;">
+            <img src="\static\images\crop1.png" alt="Rice Farming" width="250" style="border-radius: 10px;">
+            <img src="\static\images\crop2.png" alt="Harvesting" width="250" style="border-radius: 10px;">
+            <img src="\static\images\crop3.png" alt="Harvesting" width="250" style="border-radius: 10px;">
+            <img src="\static\images\crop4.png" alt="Harvesting" width="250" style="border-radius: 10px;">
+        </div>
+    </section>
+
+
+  <footer>
+    &copy; 2025 AgriCrop Advisor. All rights reserved.
+  </footer>
+
+  <script>
+    let currentIndex = 0;
+    const slides = document.getElementById('slides');
+    const dots = document.querySelectorAll('.dot');
+
+    function updateSlider() {
+      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[currentIndex].classList.add('active');
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % dots.length;
+      updateSlider();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + dots.length) % dots.length;
+      updateSlider();
+    }
+
+    function setSlide(index) {
+      currentIndex = index;
+      updateSlider();
+    }
+
+    updateSlider(); // Initialize
+  </script>
+</body>
+</html>

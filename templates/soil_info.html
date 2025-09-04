@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Soil Info | AgriCrop Advisor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+          font-family: 'Ubuntu', sans-serif;
+            background: url("{{ url_for('static', filename='images/crop1.png') }}") no-repeat center center fixed;
+            background-size: cover;
+            color: #2d572c;
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            position: relative;
+            z-index: 1;
+        }
+    
+ body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+            z-index: -1;
+        }
+
+
+
+        .navbar {
+            background: linear-gradient(to right, #2e7d32, #66bb6a);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        select {
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid #2e7d32;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .result {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: left;
+            margin-top: 30px;
+            display: none;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .result h2 {
+            font-size: 26px;
+            color: #1b5e20;
+            margin-bottom: 15px;
+        }
+
+        .result img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .result ul {
+            list-style: disc;
+            padding-left: 25px;
+            margin-top: 10px;
+        }
+
+        #soilDesc strong {
+            display: block;
+            margin-top: 12px;
+            font-size: 19px;
+        }
+
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #388e3c;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 30px;
+            font-size: 16px;
+            display: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        #backToTop:hover {
+            background: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div><strong>AgriCrop Advisor</strong></div>
+        <div>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('learn') }}">Learn</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Soil Types & Recommended Crops</h1>
+        <p>Select a soil type to view suitable crops and climate compatibility:</p>
+
+        <select id="soilSelect" onchange="showCrops()">
+            <option value="">-- Select Soil Type --</option>
+            {% for soil in soil_data %}
+            <option value="{{ soil }}">{{ soil }}</option>
+            {% endfor %}
+        </select>
+
+        <div class="result" id="cropResult">
+            <h2 id="soilTitle"></h2>
+            <p id="soilDesc"></p>
+            <ul id="cropList"></ul>
+            <img id="soilImg" src="" alt="Soil image">
+        </div>
+    </div>
+
+    <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ Back to Top</button>
+
+    <script>
+        const soilData = {{ soil_data | tojson }};
+
+        const soilDescriptions = {
+            'Alluvial': 'Fertile and found in river basins, ideal for diverse crops.',
+            'Black': 'Rich in clay, moisture-retentive; best for cotton and soybean.',
+            'Red': 'Rich in iron, slightly acidic, suitable for pulses and millets.',
+            'Laterite': 'Porous and acidic; perfect for plantation crops like tea.',
+            'Sandy': 'Drains quickly, requires frequent irrigation, good for coconut.',
+            'Clay': 'Heavy, sticky soil retaining nutrients; ideal for paddy.',
+            'Peaty': 'Organic-rich and acidic, good for rice and vegetables.',
+            'Saline': 'High salt content, needs salt-tolerant crops like barley.'
+        };
+
+        const climateInfo = {
+            'Alluvial': 'Moderate to high rainfall, humid subtropical regions.',
+            'Black': 'Semi-arid, hot summers and moderate rainfall.',
+            'Red': 'Hot and dry regions with moderate rainfall.',
+            'Laterite': 'High rainfall zones with tropical climates.',
+            'Sandy': 'Arid to semi-arid climate, low rainfall.',
+            'Clay': 'Flood-prone or heavy rainfall areas.',
+            'Peaty': 'Cool and humid conditions, marshy lowlands.',
+            'Saline': 'Coastal regions with dry and saline-prone conditions.'
+        };
+
+        const soilImages = {
+            'Alluvial': '/static/images/alluvial.png',
+            'Black': '/static/images/black.png',
+            'Red': '/static/images/red.png',
+            'Laterite': '/static/images/latarite.png',
+            'Sandy': '/static/images/sandy.png',
+            'Clay': '/static/images/clay.png',
+            'Peaty': '/static/images/peaty.png',
+            'Saline': '/static/images/saline.png'
+        };
+
+        function showCrops() {
+            const selected = document.getElementById("soilSelect").value;
+            const title = document.getElementById("soilTitle");
+            const desc = document.getElementById("soilDesc");
+            const img = document.getElementById("soilImg");
+            const cropList = document.getElementById("cropList");
+            const result = document.getElementById("cropResult");
+
+            if (selected && soilData[selected]) {
+                title.textContent = `${selected} Soil - Recommended Crops`;
+                desc.innerHTML = `
+                    <strong>Description:</strong> ${soilDescriptions[selected] || ''}
+                    <strong>Climate Compatibility:</strong> ${climateInfo[selected] || ''}
+                `;
+                img.src = soilImages[selected] || '';
+                img.alt = `${selected} soil image`;
+
+                cropList.innerHTML = "";
+                soilData[selected].forEach(crop => {
+                    const li = document.createElement("li");
+                    li.textContent = crop;
+                    cropList.appendChild(li);
+                });
+
+                result.style.display = "block";
+            } else {
+                result.style.display = "none";
+            }
+        }
+
+        window.onscroll = function () {
+            const btn = document.getElementById("backToTop");
+            btn.style.display = (window.scrollY > 200) ? "block" : "none";
+        };
+    </script>
+
+</body>
+</html>

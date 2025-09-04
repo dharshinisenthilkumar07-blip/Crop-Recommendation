@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - AgriCrop Advisor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+     body {
+          font-family: 'Ubuntu', sans-serif;
+            background: url("{{ url_for('static', filename='images/crop1.png') }}") no-repeat center center fixed;
+            background-size: cover;
+            color: #2d572c;
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            position: relative;
+            z-index: 1;
+        }
+    
+ body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+            z-index: -1;
+        }
+
+
+    .navbar {
+      width: 100%;
+      padding: 15px 50px 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: linear-gradient(to right, #4caf50, #81c784);
+      color: white;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .logo {
+      font-weight: 600;
+      font-size: 40px;
+    }
+
+    .navbar .nav-links {
+      margin-right: 60px;
+    }
+
+    .navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .navbar .nav-links a:hover {
+      color: #f0f0f0;
+    }
+
+    .spacer {
+      height: 90px;
+    }
+
+    .main-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+      margin-top: 30px;
+    }
+
+    .form-container, .result-container {
+      flex: 1;
+      background-color: #fffef5;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .form-container h1, .form-container h3 {
+      text-align: center;
+    }
+
+    form input[type="number"],
+    form input[type="submit"] {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 12px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      background-color: #3c763d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2e5e2d;
+    }
+
+    /* Updated recommendation section */
+    .recommendation {
+      background-color: #e8f5e9;
+      padding: 35px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      font-size: 1.3em;
+      color: #1b5e20;
+      text-align: center;
+    }
+
+    .recommendation h2 {
+      margin-bottom: 20px;
+      font-size: 2em;
+      font-weight: 600;
+      color: #1b5e20;
+    }
+
+    .recommendation img {
+      max-width: 250px;
+      height: auto;
+      margin: 20px auto;
+      display: block;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 128, 0, 0.2);
+    }
+
+    .logout-link {
+      display: inline-block;
+      float: right;
+      margin-top: -40px;
+      margin-right: 10px;
+      color: #dc3545;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .logout-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin: 40px 0 20px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="logo">🌿 AgriCrop Advisor</div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/soil-info">Soil & Crops</a>
+    <a href="/crop-guide">Crop Guide</a>
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="main-container">
+  <!-- Input Form Section (Left) -->
+  <div class="form-container">
+    <h1>Welcome {{ session['username'] }}</h1>
+    <a href="/logout" class="logout-link">Logout</a>
+
+    <h3>Enter Soil Details</h3>
+    <form method="POST">
+      <input type="number" name="N" placeholder="Nitrogen (N)" required>
+      <input type="number" name="P" placeholder="Phosphorus (P)" required>
+      <input type="number" name="K" placeholder="Potassium (K)" required>
+      <input type="number" step="any" name="temperature" placeholder="Temperature (°C)" required>
+      <input type="number" step="any" name="humidity" placeholder="Humidity (%)" required>
+      <input type="number" step="any" name="ph" placeholder="pH Level" required>
+      <input type="number" step="any" name="rainfall" placeholder="Rainfall (mm)" required>
+      <input type="submit" value="Recommend Crop">
+    </form>
+  </div>
+
+  <!-- Result Section (Right) -->
+  {% if crop %}
+  <div class="result-container">
+    <div class="recommendation">
+      <h2>Recommended Crop: {{ crop|capitalize }}</h2>
+      {% if crop_img %}
+      <img src="{{ crop_img }}" alt="{{ crop }} image">
+      {% endif %}
+      <p><strong>Fertilizer Suggestion:</strong> {{ fertilizer }}</p>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<footer>
+  &copy; 2025 AgriCrop Advisor. All rights reserved.
+</footer>
+
+</body>
+</html>
